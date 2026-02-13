@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Watch Queue</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <h1 class="header-title">Watch Queue</h1>
+      <span class="header-count" id="pending-count">0</span>
+    </header>
+
+    <!-- Filter Tabs -->
+    <nav class="tabs">
+      <button class="tab tab--active" data-filter="pending">Pending</button>
+      <button class="tab" data-filter="all">All</button>
+      <button class="tab" data-filter="completed">Completed</button>
+    </nav>
+
+    <!-- Queue List -->
+    <div class="list" id="queue-list">
+      <!-- Items rendered by JS -->
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty" id="empty-state" style="display: none;">
+      <div class="empty-icon">
+        <svg viewBox="0 0 24 24" width="48" height="48" fill="#555">
+          <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z"/>
+        </svg>
+      </div>
+      <p class="empty-text" id="empty-text">No videos in your queue yet.</p>
+      <p class="empty-hint">Visit a YouTube video and click "Add to Queue" to get started.</p>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

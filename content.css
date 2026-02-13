@@ -1,0 +1,239 @@
+/* YouTube Watch Reminder - Content Script Styles */
+
+/* ── Add to Queue Button ─────────────────────────────── */
+
+.ywr-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 16px;
+  height: 36px;
+  border: none;
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #f1f1f1;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+.ywr-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.ywr-btn--in-queue {
+  background-color: rgba(46, 125, 50, 0.3);
+  cursor: default;
+}
+
+.ywr-btn--in-queue:hover {
+  background-color: rgba(46, 125, 50, 0.4);
+}
+
+.ywr-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* ── Modal Overlay ───────────────────────────────────── */
+
+.ywr-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  animation: ywrFadeIn 0.15s ease;
+}
+
+@keyframes ywrFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ── Modal ───────────────────────────────────────────── */
+
+.ywr-modal {
+  background: #282828;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 90vw;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  animation: ywrSlideUp 0.2s ease;
+  overflow: hidden;
+}
+
+@keyframes ywrSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ywr-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ywr-modal-header h3 {
+  margin: 0;
+  color: #f1f1f1;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.ywr-modal-close {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.ywr-modal-close:hover {
+  color: #f1f1f1;
+}
+
+.ywr-modal-body {
+  padding: 20px;
+}
+
+.ywr-field {
+  margin-bottom: 16px;
+}
+
+.ywr-field:last-child {
+  margin-bottom: 0;
+}
+
+.ywr-label {
+  display: block;
+  color: #aaa;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.ywr-video-title {
+  color: #f1f1f1;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.ywr-channel-name {
+  color: #aaa;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.ywr-select,
+.ywr-input {
+  width: 100%;
+  padding: 10px 12px;
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #f1f1f1;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.ywr-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%23aaa'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+
+.ywr-select:focus,
+.ywr-input:focus {
+  border-color: #3ea6ff;
+}
+
+.ywr-select option {
+  background: #1a1a1a;
+  color: #f1f1f1;
+}
+
+/* Date input calendar icon color fix for dark theme */
+.ywr-input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.7);
+  cursor: pointer;
+}
+
+/* ── Modal Footer ────────────────────────────────────── */
+
+.ywr-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ywr-btn-secondary,
+.ywr-btn-primary {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 18px;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s, opacity 0.15s;
+}
+
+.ywr-btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f1f1f1;
+}
+
+.ywr-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.ywr-btn-primary {
+  background: #3ea6ff;
+  color: #0d0d0d;
+}
+
+.ywr-btn-primary:hover {
+  opacity: 0.85;
+}
